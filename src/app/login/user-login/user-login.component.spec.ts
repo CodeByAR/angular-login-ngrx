@@ -57,34 +57,39 @@ describe('UserLoginComponent', () => {
   describe('checkAndNavigate', () => {
     it('should call router navigate when user is logged in', () => {
       isUserloggedin$.next(true);
-
+      let routerSpy = spyOn(router, 'navigate').and.returnValue(true);
       component.checkAndNavigate();
 
       component.userLoggedIn$.pipe(take(1)).subscribe((res) => {
-        expect(router.navigate).toHaveBeenCalledWith([
-          '/',
-          'page',
-          'first-page',
-        ]);
+        expect(routerSpy).toHaveBeenCalled();
       });
     });
     it('should not call router navigate when user is not logged in', () => {
       isUserloggedin$.next(false);
-
+      let routerSpy = spyOn(router, 'navigate').and.returnValue(true);
       component.checkAndNavigate();
 
       component.userLoggedIn$.pipe(take(1)).subscribe((res) => {
-        expect(router.navigate).toHaveBeenCalledTimes(0);
+        expect(routerSpy).toHaveBeenCalledTimes(0);
       });
     });
   });
+
   describe('onSubmit', () => {
     it('should dispatch action', () => {
+      let storeDispatch = spyOn(store, 'dispatch').and.returnValue(undefined);
+      spyOn(component, 'checkAndNavigate');
+      component.onSubmit();
+
+      expect(storeDispatch).toHaveBeenCalled();
+    });
+    it('should call checkAndNavigate', () => {
+      let comCheckAndNavigate = spyOn(component, 'checkAndNavigate');
       spyOn(store, 'dispatch').and.returnValue(undefined);
 
       component.onSubmit();
 
-      expect(store.dispatch).toHaveBeenCalled();
+      expect(comCheckAndNavigate).toHaveBeenCalled();
     });
   });
 });

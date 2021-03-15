@@ -1,0 +1,6 @@
+export enum LoginAction {
+    LOGIN_VALIDATE = '[User] LOGIN VALIDATE',
+    LOGIN_SUCCESS = '[USER] LOGIN SUCCESS',
+    LOGIN_FAIL = '[USER] LOGIN FAIL',
+    LOG_OUT = '[USER] LOGGED OUT'
+}

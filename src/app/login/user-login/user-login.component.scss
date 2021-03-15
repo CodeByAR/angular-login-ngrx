@@ -1,0 +1,8 @@
+.login-container {
+  .form-group {
+      .form-control.ng-invalid.ng-touched {
+        border: 0.1em solid red !important;
+      }
+    
+  }
+}

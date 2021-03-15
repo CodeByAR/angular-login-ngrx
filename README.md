@@ -6,7 +6,10 @@ Run below commands in command prompt after cloning/downloading the code
 1. ***npm install*** - to doownload all the dependencies specified in package.json
 2. ***npm start*** - to start the application (will be available on localhost:4200)
 
-##Improvement Scope
+## Test Code Coverage
+![image](https://user-images.githubusercontent.com/39939363/111121781-20170b80-8593-11eb-826e-43a676f8273e.png)
+
+## Improvement Scope
 1. User login session can be managed on page reload
 2. Wild card route can be setup for better error handling
 3. Preloading strategy can be implemented for optimizing application first load time

@@ -10,10 +10,10 @@ Run below commands in command prompt after cloning/downloading the code
 2. ***npm start*** - to start the application (will be available on localhost:4200)
 
 ## How to generate Test Code Coverage Report?
-Run below command in command prompt after ***npm install** is completed
-***npm run test-coverage***
-Folder namd ***coverage*** will be created at the root directory level. 
-Access coverage > angular-login-ngrx > index.html (View in browser).
+> Run below command in command prompt after ***npm install** is completed\
+***npm run test-coverage***\
+> Folder namd ***coverage*** will be created at the root directory level. \
+> Access report at coverage > angular-login-ngrx > index.html (View in browser).
 
 ## Test Code Coverage
 ![image](https://user-images.githubusercontent.com/39939363/111121781-20170b80-8593-11eb-826e-43a676f8273e.png)

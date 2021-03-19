@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { UserService } from './user.service';
 
@@ -24,11 +25,31 @@ describe('UserService', () => {
   });
 
   describe('validateUser', () => {
+    it('should call http post', () => {
+      let userCred = {
+        username: 'MTN_user@mtn.com',
+        password: 'MTN281#^@*',
+      };
+      httpClient.post.and.returnValue(
+        of({
+          IsValid: true,
+          ErrMessage: '',
+        })
+      );
+      service.validateUser(userCred);
+      expect(httpClient.post).toHaveBeenCalled();
+    });
     it('should return success when credentails are valid', () => {
       let userCred = {
         username: 'MTN_user@mtn.com',
         password: 'MTN281#^@*',
       };
+      httpClient.post.and.returnValue(
+        of({
+          IsValid: true,
+          ErrMessage: '',
+        })
+      );
       service.validateUser(userCred).subscribe((data) => {
         expect(data.status).toBe('SUCCESS');
       });
@@ -38,10 +59,15 @@ describe('UserService', () => {
         username: 'MTN_user@abc.com',
         password: 'MTN281#^@*',
       };
+      let responsedata = {
+        IsValid: false,
+        ErrMessage: 'ErrMessage',
+      };
+      httpClient.post.and.returnValue(of(responsedata));
       service.validateUser(userCred).subscribe(
         (data) => {},
         (err) => {
-          expect(err).toBe('Server: Invalid Credentials!!');
+          expect(err).toThrowError();
         }
       );
     });
